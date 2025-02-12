@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Sayang ❤️</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .heart {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            clip-path: path("M150 30
+                C 200 -50, 300 20, 150 200
+                C 0 20, 100 -50, 150 30
+                Z");
+            animation: beat 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes beat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .hidden {
+            display: none;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 250px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .glitter {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkle 1.5s linear;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: translateY(-200px) scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart" id="heart"></div>
+
+    <div class="hidden" id="message1">I'm Sorry, Sayang ❤️</div>
+    <div class="hidden" id="message2">I love you so much, Alissa Amany 💖</div>
+
+    <script>
+        function explodeHeart() {
+            let heart = document.getElementById("heart");
+            heart.style.display = "none";
+
+            for (let i = 0; i < 50; i++) {
+                let glitter = document.createElement("div");
+                glitter.classList.add("glitter");
+                document.body.appendChild(glitter);
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let duration = Math.random() * 2 + 1;
+                glitter.style.left = x + "px";
+                glitter.style.top = y + "px";
+                glitter.style.animationDuration = duration + "s";
+
+                setTimeout(() => glitter.remove(), duration * 1000);
+            }
+
+            setTimeout(() => {
+                document.getElementById("message1").style.display = "block";
+            }, 1000);
+            setTimeout(() => {
+                document.getElementById("message2").style.display = "block";
+            }, 2000);
+        }
+
+        setTimeout(explodeHeart, 3000);
+    </script>
+
+</body>
+</html>
